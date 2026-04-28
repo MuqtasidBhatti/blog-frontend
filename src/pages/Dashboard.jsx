@@ -22,7 +22,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchMyPosts = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/posts/my-posts', {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/my-posts`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 })
                 const data = await res.json()
@@ -38,7 +38,7 @@ const Dashboard = () => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, {
                 method: "DELETE",
                 headers: { "Authorization": `Bearer ${token}` }
             })

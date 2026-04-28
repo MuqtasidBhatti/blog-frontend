@@ -10,7 +10,7 @@ const EditPost = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const res = await fetch(`http://localhost:5000/api/posts/${id}`)
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`)
       const data = await res.json()
       setPost({ title: data.title, content: data.content })
     }
@@ -19,7 +19,7 @@ const EditPost = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/posts/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

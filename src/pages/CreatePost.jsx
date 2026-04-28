@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast' 
+import toast from 'react-hot-toast'
 
 const CreatePost = () => {
     const [post, setPost] = useState({ title: "", content: "" })
@@ -9,7 +9,7 @@ const CreatePost = () => {
     const handleCreate = async () => {
         try {
             const token = localStorage.getItem('token')
-            const res = await fetch('http://localhost:5000/api/posts', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
