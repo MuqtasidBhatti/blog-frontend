@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import toast from 'react-hot-toast' 
+import toast from 'react-hot-toast'
 
 const EditPost = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [post, setPost] = useState({ title: "", content: "" })
+  const [loading, setLoading] = useState(true)
   const token = localStorage.getItem('token')
 
   useEffect(() => {
     const fetchPost = async () => {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`)
-      const data = await res.json()
-      setPost({ title: data.title, content: data.content })
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/posts/${id}`)
+        if (!res.ok) throw new Error(`Server error ${res.status}`)
+        const data = await res.json()
+        setPost({ title: data.title, content: data.content })
+      } catch (err) {
+        console.error("Error:", err)
+        toast.error("Failed to load post")
+        navigate('/dashboard')
+      } finally {
+        setLoading(false)
+      }
     }
     fetchPost()
   }, [id])
@@ -36,8 +46,20 @@ const EditPost = () => {
       }
     } catch (err) {
       console.error("Error:", err)
+      toast.error("Something went wrong")
     }
   }
+
+  const isReady = post.title.trim() && post.content.trim()
+
+  if (loading) return (
+    <div className="min-h-screen bg-stone-50 flex items-center justify-center pt-16">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-6 h-6 rounded-full border-2 border-stone-300 border-t-stone-900 animate-spin" />
+        <p className="text-stone-500 text-sm">Loading post...</p>
+      </div>
+    </div>
+  )
 
   return (
     <div className="min-h-screen bg-stone-50 pt-16">
@@ -76,7 +98,12 @@ const EditPost = () => {
             </button>
             <button
               onClick={handleUpdate}
-              className="px-6 py-2.5 bg-stone-900 hover:bg-stone-700 text-white text-sm font-semibold rounded-xl transition-all duration-200 cursor-pointer active:scale-[0.98]"
+              disabled={!isReady}
+              className={`px-6 py-2.5 text-sm font-semibold rounded-xl transition-all duration-200 active:scale-[0.98]
+                ${isReady
+                  ? 'bg-stone-900 text-white hover:bg-stone-700 cursor-pointer'
+                  : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                }`}
             >
               Save Changes
             </button>

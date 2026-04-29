@@ -1,7 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast' 
+import toast from 'react-hot-toast'
 
 const Login = () => {
     const [user, setUser] = useState({ email: "", password: "" })
@@ -23,15 +22,16 @@ const Login = () => {
                 toast.error(data.message || "Login failed")
             }
         } catch (err) {
-            console.error("Error:", err)
+            toast.error("Something went wrong")
         }
     }
+
+    const isReady = user.email.trim() && user.password.trim()
 
     return (
         <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
             <div className="w-full max-w-md">
 
-                {/* Header */}
                 <div className="mb-10 text-center">
                     <span className="text-amber-700 text-xs font-semibold uppercase tracking-widest">Welcome back</span>
                     <h2 className="mt-2 font-serif text-4xl font-bold text-stone-900 tracking-tight">
@@ -40,7 +40,6 @@ const Login = () => {
                     <p className="mt-2 text-stone-500 text-sm">Continue where you left off.</p>
                 </div>
 
-                {/* Card */}
                 <div className="bg-white border border-stone-200 rounded-2xl p-8 shadow-sm">
                     <div className="space-y-5">
                         <div>
@@ -68,7 +67,12 @@ const Login = () => {
 
                         <button
                             onClick={handleLogin}
-                            className="w-full py-3 bg-stone-900 hover:bg-stone-700 text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] mt-2"
+                            disabled={!isReady}
+                            className={`w-full py-3 text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] mt-2
+                                ${isReady
+                                    ? 'bg-stone-900 hover:bg-stone-700 cursor-pointer'
+                                    : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                                }`}
                         >
                             Sign In
                         </button>

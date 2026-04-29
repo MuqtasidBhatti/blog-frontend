@@ -1,8 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast' 
-
+import toast from 'react-hot-toast'
 
 const Register = () => {
     const [user, setUser] = useState({ name: "", email: "", password: "" })
@@ -23,15 +21,16 @@ const Register = () => {
                 toast.error(data.message || "Registration failed")
             }
         } catch (err) {
-            console.error("Error:", err)
+            toast.error("Something went wrong")
         }
     }
+
+    const isReady = user.name.trim() && user.email.trim() && user.password.trim()
 
     return (
         <div className="min-h-screen bg-stone-50 flex items-center justify-center px-4">
             <div className="w-full max-w-md">
 
-                {/* Header */}
                 <div className="mb-10 text-center">
                     <span className="text-amber-700 text-xs font-semibold uppercase tracking-widest">Welcome</span>
                     <h2 className="mt-2 font-serif text-4xl font-bold text-stone-900 tracking-tight">
@@ -40,7 +39,6 @@ const Register = () => {
                     <p className="mt-2 text-stone-500 text-sm">Join and start writing your story.</p>
                 </div>
 
-                {/* Card */}
                 <div className="bg-white border border-stone-200 rounded-2xl p-8 shadow-sm">
                     <div className="space-y-5">
                         <div>
@@ -79,7 +77,12 @@ const Register = () => {
 
                         <button
                             onClick={handleRegister}
-                            className="w-full py-3 bg-stone-900 hover:bg-stone-700 text-white font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] mt-2"
+                            disabled={!isReady}
+                            className={`w-full py-3 font-semibold text-sm rounded-xl transition-all duration-200 active:scale-[0.98] mt-2
+                                ${isReady
+                                    ? 'bg-stone-900 text-white hover:bg-stone-700 cursor-pointer'
+                                    : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+                                }`}
                         >
                             Create Account
                         </button>

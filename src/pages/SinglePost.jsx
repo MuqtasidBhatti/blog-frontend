@@ -70,8 +70,8 @@ const SinglePost = () => {
                         </div>
                         <div>
                             <p className="text-sm font-semibold text-stone-700">{post.author?.name || "Anonymous"}</p>
-                            <p className="text-xs text-stone-400">
                             <p className="text-xs text-stone-400">Author</p>
+                            <p className="text-xs text-stone-400">
                                 {new Date(post.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                             </p>
                         </div>

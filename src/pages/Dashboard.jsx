@@ -17,7 +17,6 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
-    const currentUserId = getCurrentUserId()
 
     useEffect(() => {
         const fetchMyPosts = async () => {
@@ -97,7 +96,7 @@ const Dashboard = () => {
                                 key={post._id}
                                 className="bg-white border border-stone-200 rounded-2xl p-6 hover:border-stone-300 transition-all duration-200 group"
                             >
-                                <div className="flex items-start justify-between gap-4">
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                                     <div className="flex-1 min-w-0">
                                         <h3 className="font-serif text-xl font-bold text-stone-900 leading-snug truncate">
                                             {post.title}
@@ -107,7 +106,7 @@ const Dashboard = () => {
                                         </p>
                                     </div>
 
-                                    <div className="flex items-center gap-2 shrink-0 pt-1">
+                                    <div className="flex items-center gap-2 sm:shrink-0 sm:pt-1">
                                         <button
                                             onClick={() => navigate(`/edit/${post._id}`)}
                                             className="px-3.5 py-2 text-xs font-semibold text-stone-600 bg-stone-100 hover:bg-stone-200 rounded-lg transition-all duration-200 cursor-pointer"
