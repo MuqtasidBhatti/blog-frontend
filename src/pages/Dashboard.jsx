@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const getCurrentUserId = () => {
-    const token = localStorage.getItem('token')
-    if (!token) return null
-    try {
-        const payload = JSON.parse(atob(token.split('.')[1]))
-        return payload.id
-    } catch {
-        return null
-    }
-}
 
 const Dashboard = () => {
     const [posts, setPosts] = useState([])
@@ -63,7 +53,7 @@ const Dashboard = () => {
 
         <div className="min-h-screen bg-stone-50 pt-16" >
             <div className="max-w-3xl mx-auto px-6 py-16">
-                <div className="flex items-center justify-between border-b border-stone-200 pb-8 mb-12">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200 pb-8 mb-12 gap-4">
                     <div>
                         <span className="text-amber-700 text-xs font-semibold uppercase tracking-widest">Your Space</span>
                         <h1 className="mt-2 font-serif text-4xl font-bold text-stone-900 tracking-tight">Dashboard</h1>

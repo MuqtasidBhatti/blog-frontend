@@ -55,7 +55,7 @@ const Navbar = () => {
                     {/* Write Post (special button) */}
                     <button
                         onClick={() => navigate('/create')}
-                        className="px-4 py-2 text-sm font-medium text-white bg-stone-900 hover:bg-stone-700 rounded-lg transition-all duration-200 ml-2 cursor-pointer"
+                        className="px-4 py-2 text-sm font-medium text-white bg-stone-900 hover:bg-stone-700 rounded-lg transition-all duration-200 ml-2 cursor-pointer whitespace-nowrap"
                     >
                         Write Post
                     </button>
