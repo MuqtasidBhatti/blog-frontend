@@ -11,8 +11,8 @@ const Navbar = () => {
     const navBtn = (path, label) => (
         <button
             onClick={() => { navigate(path); setMenuOpen(false) }}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer
-                ${location.pathname === path
+            className={`w-full text-left px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer
+            ${location.pathname === path
                     ? 'bg-stone-900 text-white'
                     : 'text-stone-600 hover:text-stone-900 hover:bg-stone-100'
                 }`}
@@ -21,7 +21,7 @@ const Navbar = () => {
         </button>
     )
 
-   const handleLogout = () => {
+    const handleLogout = () => {
         localStorage.removeItem('token')
         setMenuOpen(false)
         navigate('/login')

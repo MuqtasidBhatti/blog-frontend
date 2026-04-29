@@ -63,7 +63,7 @@ const Dashboard = () => {
 
         <div className="min-h-screen bg-stone-50 pt-16" >
             <div className="max-w-3xl mx-auto px-6 py-16">
-                <div className="flex items-end justify-between border-b border-stone-200 pb-8 mb-12">
+                <div className="flex items-center justify-between border-b border-stone-200 pb-8 mb-12">
                     <div>
                         <span className="text-amber-700 text-xs font-semibold uppercase tracking-widest">Your Space</span>
                         <h1 className="mt-2 font-serif text-4xl font-bold text-stone-900 tracking-tight">Dashboard</h1>
