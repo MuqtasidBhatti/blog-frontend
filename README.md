@@ -1,16 +1,51 @@
-# React + Vite
+# Blog Platform - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the Blog Platform app. Built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- View all published posts on the home page
+- Read individual posts with author and date
+- Register and log in with JWT authentication
+- Protected dashboard to manage your own posts
+- Create, edit, and delete your posts
+- Character count on the post editor
+- Toast notifications for actions
+- Redirects unauthenticated users away from protected routes
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React, Vite, React Router, Tailwind CSS, React Hot Toast
 
-## Expanding the ESLint configuration
+## Folder Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+├── src/
+│   ├── components/     # Navbar, ProtectedRoute
+│   ├── pages/          # Home, Login, Register, Dashboard, CreatePost, EditPost, SinglePost, NotFound
+│   ├── App.jsx
+│   └── main.jsx
+├── public/
+├── .env
+└── index.html
+
+## Pages
+
+- `/` - All published posts
+- `/login` - Sign in
+- `/register` - Create account
+- `/dashboard` - Your posts (protected)
+- `/create` - Write a new post (protected)
+- `/edit/:id` - Edit a post (protected)
+- `/post/:id` - Read a single post
+
+## Setup
+
+1. Clone the repo
+2. Run `npm install`
+3. Create a `.env` file in the root:
+VITE_API_URL=https://your-backend-url.vercel.app
+4. Run `npm run dev`
+
+## Deployment
+
+Deployed on Vercel. Set `VITE_API_URL` in Vercel environment variables.
