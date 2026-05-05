@@ -2,6 +2,10 @@
 
 React frontend for the Blog Platform app. Built with React, Vite, and Tailwind CSS.
 
+
+![Home Page](screenshots/home.png)
+
+
 ## Features
 
 - View all published posts on the home page
