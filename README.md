@@ -3,7 +3,7 @@
 React frontend for the Blog Platform app. Built with React, Vite, and Tailwind CSS.
 
 
-![Home Page](screenshots/home.png)
+![Home Page](screenshots/Home.png)
 
 
 ## Features
